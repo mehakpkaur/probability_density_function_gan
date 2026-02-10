@@ -78,9 +78,11 @@ These methods provide a numerical and visual approximation of the learned probab
 
 ---
 ## Kernel Density Estimation (KDE)
+
 Kernel Density Estimation provides a smoother and more continuous approximation of the learned probability density function.
 
-![KDE PDF](ass4/gan_pdf_kde.png)
+![KDE PDF](gan_pdf_kde.png)
+
 
 
 ---
