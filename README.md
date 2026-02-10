@@ -25,6 +25,7 @@ Where:
 - `a_r = 0.5 × (r mod 7)`
 - `b_r = 0.3 × (r mod 5 + 1)`
 - r = 102317094
+  
 This nonlinear transformation introduces oscillatory behavior, making the PDF of `z` unknown and analytically intractable.
 ## Transformation Parameters
 The nonlinear transformation applied to the NO₂ concentration data is defined as:
