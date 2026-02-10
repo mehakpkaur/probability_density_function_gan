@@ -25,8 +25,14 @@ Where:
 - `a_r = 0.5 × (r mod 7)`
 - `b_r = 0.3 × (r mod 5 + 1)`
 - r = 102317094
-
 This nonlinear transformation introduces oscillatory behavior, making the PDF of `z` unknown and analytically intractable.
+## Transformation Parameters
+The nonlinear transformation applied to the NO₂ concentration data is defined as:
+z = x + a_r * sin(b_r * x)
+For this implementation, the parameters derived are:
+- **a_r = 2.5**
+- **b_r = 1.5**
+
 
 ---
 
@@ -50,31 +56,14 @@ The GAN learns the PDF **implicitly**, without estimating an explicit probabilit
 - Receives both real samples `z` and generated samples `z_f`
 - Outputs a probability indicating whether the input sample is real or generated
 
-
-The generator and discriminator are trained simultaneously in an adversarial manner.  
-The generator attempts to produce samples that resemble the real data distribution, while the discriminator learns to distinguish between real and generated samples.
+The generator and discriminator are trained simultaneously in an adversarial manner.  The generator attempts to produce samples that resemble the real data distribution, while the discriminator learns to distinguish between real and generated samples.
 
 ---
 
 ## Training Process
-- **Loss Function:** Binary Cross Entropy (BCE) loss  
-- **Optimizer:** Adam optimizer  
-- **Training Method:** Mini-batch based training  
-
 During training, the discriminator is optimized to correctly classify real and fake samples, while the generator is optimized to fool the discriminator.  
 Since GAN training involves random initialization and stochastic sampling, slight variations in the learned distribution across different runs are expected.
 
-
----
-
-## Training Process
-- **Loss Function:** Binary Cross Entropy Loss  
-- **Optimizer:** Adam  
-- **Training Strategy:** Mini-batch gradient descent  
-
-The GAN is trained until the generator produces samples that are difficult for the discriminator to distinguish from real samples.
-
-Due to the stochastic nature of GAN training, the learned distribution may vary slightly across different runs.
 
 ---
 
