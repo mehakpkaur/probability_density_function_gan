@@ -77,7 +77,12 @@ After training the GAN:
 These methods provide a numerical and visual approximation of the learned probability density.
 
 ---
+## Kernel Density Estimation (KDE)
+Kernel Density Estimation provides a smoother and more continuous approximation of the learned probability density function.
 
+![KDE PDF](gan_pdf_kde.png
+
+---
 ## Observations
 - The GAN successfully captures the overall structure of the underlying distribution
 - No explicit parametric PDF is assumed at any stage
