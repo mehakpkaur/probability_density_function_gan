@@ -24,7 +24,7 @@ To ensure that the resulting distribution has no simple analytical form, each va
 Where:
 - `a_r = 0.5 × (r mod 7)`
 - `b_r = 0.3 × (r mod 5 + 1)`
-- `r` is the university roll number
+- r = 102317094
 
 This nonlinear transformation introduces oscillatory behavior, making the PDF of `z` unknown and analytically intractable.
 
@@ -41,20 +41,29 @@ A **Generative Adversarial Network (GAN)** is used to learn the underlying distr
 The GAN learns the PDF **implicitly**, without estimating an explicit probability function.
 
 ---
-
 ## GAN Architecture
 
 ### Generator
-- Input: Random noise sampled from `N(0,1)`
-- Output: Generated samples `z_f`
-- Architecture: Fully connected neural network with ReLU activations
-
+- Takes a one-dimensional noise vector sampled from a standard normal distribution `N(0,1)`
+- Maps the noise to synthetic samples of the transformed variable `z_f`
 ### Discriminator
-- Input: Real samples `z` and generated samples `z_f`
-- Output: Probability that the sample is real
-- Architecture: Fully connected neural network with Sigmoid activation at the output
+- Receives both real samples `z` and generated samples `z_f`
+- Outputs a probability indicating whether the input sample is real or generated
 
-The generator aims to fool the discriminator, while the discriminator learns to distinguish real samples from generated ones.
+
+The generator and discriminator are trained simultaneously in an adversarial manner.  
+The generator attempts to produce samples that resemble the real data distribution, while the discriminator learns to distinguish between real and generated samples.
+
+---
+
+## Training Process
+- **Loss Function:** Binary Cross Entropy (BCE) loss  
+- **Optimizer:** Adam optimizer  
+- **Training Method:** Mini-batch based training  
+
+During training, the discriminator is optimized to correctly classify real and fake samples, while the generator is optimized to fool the discriminator.  
+Since GAN training involves random initialization and stochastic sampling, slight variations in the learned distribution across different runs are expected.
+
 
 ---
 
@@ -73,7 +82,6 @@ Due to the stochastic nature of GAN training, the learned distribution may vary 
 After training the GAN:
 1. A large number of samples are generated from the trained generator
 2. The probability density function is approximated using:
-   - **Histogram Density Estimation** (coarse approximation)
    - **Kernel Density Estimation (KDE)** for smoother visualization
 
 These methods provide a numerical and visual approximation of the learned probability density.
@@ -93,19 +101,3 @@ This project demonstrates the effectiveness of Generative Adversarial Networks i
 The approach avoids analytical assumptions and highlights the capability of GANs to model complex, non-linear distributions.
 
 ---
-
-## Tools & Libraries Used
-- Python  
-- NumPy  
-- Pandas  
-- Matplotlib  
-- PyTorch  
-- SciPy  
-
----
-
-## How to Run
-1. Install the required Python libraries
-2. Ensure the dataset file is present in the same directory as the notebook
-3. Run the notebook `gan_pdf_estimation.ipynb` cell by cell
-4. Visualize the estimated PDF using histogram and KDE plots
